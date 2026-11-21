@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}<section class="card"><h1>My profile</h1><p>{{ user.first_name }} {{ user.last_name }} · {{ user.reg_no }} · {{ user.email }}</p><form method="post" enctype="multipart/form-data"><div class="grid">
+<div><label>Phone</label><input name="phone" value="{{ user.phone or '' }}"></div><div><label>Location</label><input name="location" value="{{ user.location or '' }}"></div>
+<div><label>Education / qualification</label><input name="education" value="{{ user.education or '' }}"></div><div><label>Experience (years)</label><input type="number" name="experience" min="0" value="{{ user.experience or 0 }}"></div>
+<div><label>Skills (comma-separated)</label><input name="skills" value="{{ user.skills or '' }}"></div><div><label>Hobbies</label><input name="hobbies" value="{{ user.hobbies or '' }}"></div>
+<div><label>Interests</label><input name="interests" value="{{ user.interests or '' }}"></div><div><label>Positions looking for</label><input name="positions" value="{{ user.positions or '' }}"></div>
+<div><label>Preferred job location</label><input name="job_location" value="{{ user.job_location or '' }}"></div><div><label>Resume (PDF/DOC/DOCX, max 5 MB)</label><input type="file" name="resume" accept=".pdf,.doc,.docx">{% if user.resume %}<small>Uploaded: {{ user.resume }}</small>{% endif %}</div>
+</div><p><button>Save profile</button></p></form></section>{% endblock %}
