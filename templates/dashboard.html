@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Welcome back, {{ user.first_name }}</h1><p class="muted">Your placement search at a glance.</p>
+<div class="stats"><div class="stat">Open roles<strong>{{ job_count }}</strong><a href="{{ url_for('jobs') }}">Browse jobs →</a></div><div class="stat">Applications<strong>{{ app_count }}</strong><a href="{{ url_for('applications') }}">View status →</a></div><div class="stat">Profile completion<strong>{{ completion }}%</strong><div class="bar"><i style="width:{{ completion }}%"></i></div></div></div>
+<section class="card" style="margin-top:20px"><h2>Next steps</h2><p>Keep your education, skills and resume current so you can apply to suitable openings.</p><a class="btn" href="{{ url_for('profile') }}">Update profile</a> <a class="btn" href="{{ url_for('jobs') }}">Explore openings</a></section>
+{% endblock %}
