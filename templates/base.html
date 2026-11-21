@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Campus Pathways{% endblock %}</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f4ef;color:#27332e;font:15px Arial,sans-serif}header{background:#283f35;color:white;padding:17px max(5%,calc((100% - 1050px)/2));display:flex;justify-content:space-between;align-items:center}header a{color:#f7c873;margin-left:16px;text-decoration:none}.wrap{max-width:1050px;margin:30px auto;padding:0 16px}.card{background:white;padding:23px;border:1px solid #e4e2d8;border-radius:5px;margin-bottom:18px}h1,h2,h3{margin-top:0}h1{font-size:27px}h2{font-size:20px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{display:block;font-weight:600;margin:10px 0 5px}input,textarea,select{width:100%;padding:10px;border:1px solid #c7cec7;border-radius:4px;font:inherit}textarea{min-height:72px}button,.btn{display:inline-block;background:#b06e3b;color:white;border:0;border-radius:4px;padding:10px 15px;text-decoration:none;cursor:pointer;font:inherit}.muted{color:#67736d}.flash{background:#fff0cf;padding:11px;border-radius:4px;margin-bottom:12px}.job{border-top:1px solid #e2e2d9;padding:15px 0}.tag{color:#47734f;font-weight:bold}.status{font-weight:bold;color:#47734f}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:#e8ede6;padding:16px;border-radius:4px}.stat strong{display:block;font-size:27px;color:#283f35}.stat a{display:inline-block;margin-top:8px;color:#47734f}.bar{height:8px;background:#e2e2d9;border-radius:8px}.bar i{display:block;height:100%;background:#b06e3b;border-radius:8px}@media(max-width:650px){.grid,.stats{grid-template-columns:1fr}header{padding:15px;display:block}header nav{margin-top:10px}}
+</style>
+</head>
+<body>
+<header><strong>Campus Pathways</strong><nav>
+{% if session.get('user_id') %}<a href="{{ url_for('dashboard') }}">Overview</a>{% if session.get('role') == 'student' %}<a href="{{ url_for('jobs') }}">Open roles</a><a href="{{ url_for('applications') }}">My applications</a><a href="{{ url_for('profile') }}">Profile</a>{% endif %}<a href="{{ url_for('logout') }}">Sign out</a>
+{% else %}<a href="{{ url_for('login') }}">Sign in</a><a href="{{ url_for('register') }}">Join</a>{% endif %}
+</nav></header>
+<main class="wrap">{% for message in get_flashed_messages() %}<div class="flash">{{ message }}</div>{% endfor %}{% block content %}{% endblock %}</main>
+</body></html>
