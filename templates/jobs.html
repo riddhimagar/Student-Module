@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Open roles</h1><p class="muted">Review requirements and choose a role that fits your skills.</p>
+<section class="card">{% for job in jobs %}<article class="job"><div class="tag">{{ job.company }} · {{ job.location or 'Location not specified' }}</div><h2>{{ job.title }}</h2><p>{{ job.description }}</p><p>Package: {{ job.package or 'Not specified' }} · Vacancies: {{ job.vacancy }}</p>{% if job.id in applied %}<span class="status">Applied</span>{% else %}<a class="btn" href="{{ url_for('job_detail',job_id=job.id) }}">View role</a>{% endif %}</article>{% else %}<p>No openings right now.</p>{% endfor %}</section>
+{% endblock %}
