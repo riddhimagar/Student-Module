@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}
+<h1>My applications</h1><p class="muted">Follow the status of each application here.</p>
+<section class="card">{% for item in applications %}<article class="job"><h2>{{ item.title }}</h2><p>{{ item.company }} · {{ item.location or 'Location not specified' }} · {{ item.package or 'Package not specified' }}</p><p>Status: <span class="status">{{ item.status }}</span> · Applied {{ item.applied_at }}</p></article>{% else %}<p>You have not submitted any applications yet. <a href="{{ url_for('jobs') }}">Browse open roles</a>.</p>{% endfor %}</section>
+{% endblock %}
