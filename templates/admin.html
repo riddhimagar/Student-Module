@@ -1,1 +1,6 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Placement desk</h1><section class="card"><h2>Registration review</h2><p class="muted">Approve student accounts before they can access the portal.</p>
+{% for student in pending %}<article class="job"><strong>{{ student.first_name }} {{ student.last_name }}</strong> · {{ student.reg_no }} · {{ student.email }}<p>{{ student.education or 'Education not provided' }} · Skills: {{ student.skills or 'Not provided' }}</p><form method="post" action="{{ url_for('student_decision',student_id=student.id,action='approve') }}" style="display:inline"><button>Approve</button></form> <form method="post" action="{{ url_for('student_decision',student_id=student.id,action='reject') }}" style="display:inline"><button style="background:#8b443d">Reject</button></form></article>
+{% else %}<p>No registrations need review.</p>{% endfor %}</section>
+{% endblock %}
 
