@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<p><a href="{{ url_for('jobs') }}">← All open roles</a></p>
+<section class="card"><div class="tag">{{ job.company }} · {{ job.location or 'Location not specified' }}</div><h1>{{ job.title }}</h1><p>{{ job.description }}</p><p>Package: {{ job.package or 'Not specified' }} · Vacancies: {{ job.vacancy }} · Minimum CGPA: {{ job.min_cgpa }}</p><p>Required skills: <strong>{{ job.required_skills }}</strong></p>
+{% if already_applied %}<p class="status">You have already applied for this role.</p>{% else %}
+<h2>Application details</h2><p class="muted">Eligibility is checked when you submit. Upload a resume and add matching skills to your profile first.</p>
+<form method="post" action="{{ url_for('apply',job_id=job.id) }}" class="grid"><div><label>Your CGPA</label><input type="number" name="cgpa" min="0" max="10" step="0.01" required></div><div><label>Experience in years</label><input type="number" name="experience" min="0" value="0"></div><div><label>Can you relocate?</label><select name="relocate"><option>Yes</option><option>No</option></select></div><div><label>What have you worked on?</label><input name="worked_on"></div><div><button>Submit application</button></div></form>{% endif %}</section>
+{% endblock %}
